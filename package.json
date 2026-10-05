@@ -1,6 +1,6 @@
 {
   "name": "obsidian-paragraph-timestamp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Obsidian plugin that inserts a timestamp at the start of every new Markdown paragraph.",
   "main": "main.js",
   "scripts": {
