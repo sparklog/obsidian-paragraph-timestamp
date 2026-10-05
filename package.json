@@ -16,8 +16,16 @@
     "markdown",
     "paragraph"
   ],
-  "author": "tungliang",
+  "author": "Hannus (https://github.com/sparklog)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparklog/obsidian-paragraph-timestamp.git"
+  },
+  "homepage": "https://github.com/sparklog/obsidian-paragraph-timestamp",
+  "bugs": {
+    "url": "https://github.com/sparklog/obsidian-paragraph-timestamp/issues"
+  },
   "devDependencies": {
     "@types/node": "^20.11.30",
     "builtin-modules": "^3.3.0",

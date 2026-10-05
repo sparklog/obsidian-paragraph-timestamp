@@ -61,14 +61,14 @@
 1. 安装并启用 [BRAT](https://github.com/TfTHacker/obsidian42-brat) 插件。
 2. 在 BRAT 中点击 **Add Beta plugin**，填入本仓库地址：
    ```
-   https://github.com/<你的用户名>/obsidian-paragraph-timestamp
+   https://github.com/sparklog/obsidian-paragraph-timestamp
    ```
 3. 启用 **Paragraph Timestamp**。
 
 ### 方式三：从源码开发安装
 
 ```bash
-git clone https://github.com/<你的用户名>/obsidian-paragraph-timestamp.git
+git clone https://github.com/sparklog/obsidian-paragraph-timestamp.git
 cd obsidian-paragraph-timestamp
 npm install
 npm run build        # 生成 main.js
