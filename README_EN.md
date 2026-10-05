@@ -1,6 +1,6 @@
 # Paragraph Timestamp
 
-An Obsidian plugin that **automatically inserts a timestamp** (for example `15:40 `) **at the start of every new paragraph** in a Markdown note, then places the cursor right after the trailing space.
+An Obsidian plugin that **automatically inserts a timestamp** (for example `` `15:40 ` ``) **at the start of every new paragraph** in a Markdown note, then places the cursor right after it.
 
 It follows Markdown paragraph semantics strictly: **a soft line break is *not* a new paragraph** — only a blank line starts one.
 
@@ -10,10 +10,11 @@ It follows Markdown paragraph semantics strictly: **a soft line break is *not* a
 
 ## Features
 
-- ⏱️ Automatically inserts a timestamp such as `15:40 ` when you start a new paragraph.
-- 🖱️ Leaves the cursor after the space following the timestamp, so you can keep typing: `15:40 your content`.
+- ⏱️ Automatically inserts a timestamp such as `` `15:40 ` `` when you start a new paragraph.
+- 🖱️ Leaves the cursor after the timestamp, so you can keep typing: `` `15:40 `your content``.
 - 📄 Only inserts at the start of a **logical Markdown paragraph**; a single line break (soft break) never triggers it.
 - ⚙️ Configurable time format (powered by moment.js, e.g. `HH:mm`, `HH:mm:ss`, `YYYY-MM-DD HH:mm`).
+- 🏷️ Switchable timestamp style: inline code wrapped in backticks by default (`` `15:40 ` ``), or plain text (`15:40 `).
 - 🧩 Includes a manual command to add a timestamp to any paragraph.
 - 🧪 Core logic is covered by unit tests; type-checking and bundling are included.
 
@@ -31,7 +32,7 @@ So the plugin behaves like this:
 | Action | Result |
 | --- | --- |
 | Type text, then press `Enter` once | Soft line break — **no** timestamp |
-| Press `Enter` again (creates a blank line) | New paragraph — **timestamp inserted** (`15:40 `) |
+| Press `Enter` again (creates a blank line) | New paragraph — **timestamp inserted** (`` `15:40 ` ``) |
 | Start typing at the beginning of a blank paragraph line | Same new paragraph; use the manual command to add a timestamp |
 
 > Note: In Obsidian's Reading view a single line break may *look* like a new paragraph (depending on the "Strict line breaks" setting), but the plugin judges by real Markdown semantics and only inserts a timestamp after a blank-line paragraph break.
@@ -92,11 +93,11 @@ While developing, run `npm run dev` to watch for file changes and rebuild automa
 2. Write the first paragraph normally.
 3. To give the next paragraph a timestamp, press `Enter` twice. You will get:
    ```
-   15:40 
+   `15:40 `
    ```
-   The cursor sits after the trailing space; just keep typing:
+   The cursor sits after the closing backtick; just keep typing:
    ```
-   15:40 This is the new paragraph.
+   `15:40 `This is the new paragraph.
    ```
 4. Repeat to timestamp every following paragraph automatically.
 
@@ -113,7 +114,8 @@ Open Obsidian → Settings → **Paragraph Timestamp**:
 | Setting | Default | Description |
 | --- | --- | --- |
 | Time format | `HH:mm` | A moment.js format string. For example `HH:mm` → `15:40`, `HH:mm:ss` → `15:40:05`, `YYYY-MM-DD HH:mm` → `2025-01-01 15:40`. |
-| Add space after timestamp | On | Whether to insert a space after the timestamp. When off, only the timestamp itself is inserted. |
+| Timestamp style | Inline code | `Inline code` wraps the timestamp in backticks and renders as `` `15:40 ` ``; `Plain text` inserts `15:40 ` directly. |
+| Add space after timestamp | On | Whether to insert a space after the timestamp (inside the backticks in inline-code style). When off, only the timestamp itself is inserted. |
 
 ---
 
@@ -133,6 +135,7 @@ npm run build    # type-check + production bundle, outputs main.js
 ├── src/
 │   ├── main.ts        # Plugin entry: editor extension, command, settings tab
 │   ├── timestamp.ts   # Core: new-paragraph detection + auto-insert CodeMirror extension
+│   ├── format.ts      # Builds the inserted text according to settings (plain / inline code)
 │   └── settings.ts    # Settings shape and settings UI
 ├── test/
 │   └── timestamp.test.ts

@@ -5,6 +5,7 @@ import {
 	ParagraphTimestampSettingTab,
 } from "./settings";
 import type { ParagraphTimestampSettings } from "./settings";
+import { applyTimestampStyle } from "./format";
 
 export default class ParagraphTimestampPlugin extends Plugin {
 	settings: ParagraphTimestampSettings = { ...DEFAULT_SETTINGS };
@@ -40,7 +41,7 @@ export default class ParagraphTimestampPlugin extends Plugin {
 	/** Builds the text to insert, honouring the current settings. */
 	buildTimestamp(): string {
 		const time = moment().format(this.settings.timeFormat);
-		return this.settings.addTrailingSpace ? `${time} ` : time;
+		return applyTimestampStyle(time, this.settings);
 	}
 
 	async loadSettings(): Promise<void> {
