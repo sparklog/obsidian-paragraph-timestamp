@@ -16,10 +16,10 @@ test("plain style without a trailing space", () => {
 	);
 });
 
-test("code style wraps the timestamp and trailing space in backticks", () => {
+test("code style wraps only the timestamp, with the space after it", () => {
 	assert.equal(
 		applyTimestampStyle("15:40", { style: "code", addTrailingSpace: true }),
-		"`15:40 `"
+		"`15:40` "
 	);
 });
 

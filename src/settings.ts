@@ -49,7 +49,7 @@ export class ParagraphTimestampSettingTab extends PluginSettingTab {
 			.setDesc("普通文本，或用反引号包裹为行内代码。")
 			.addDropdown((dropdown) =>
 				dropdown
-					.addOption("code", "行内代码 `15:40 `")
+					.addOption("code", "行内代码 `15:40`")
 					.addOption("plain", "普通文本 15:40")
 					.setValue(this.plugin.settings.style)
 					.onChange(async (value) => {
