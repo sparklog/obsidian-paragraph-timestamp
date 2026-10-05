@@ -19,7 +19,8 @@ export interface TimestampProvider {
  * paragraph starts on an empty line that is directly preceded by a blank
  * line. To avoid gluing the timestamp to existing text, this only returns
  * true when the paragraph sits at the end of the document or is followed by
- * another blank line, and when there is actual content earlier in the note.
+ * another blank line. This also covers brand-new, still empty documents, so
+ * the first paragraph gets a timestamp too.
  */
 export function isNewParagraphStart(doc: Text, pos: number): boolean {
 	const line = doc.lineAt(pos);
@@ -38,12 +39,7 @@ export function isNewParagraphStart(doc: Text, pos: number): boolean {
 	const isLastLine = line.number === doc.lines;
 	const nextIsBlank =
 		!isLastLine && doc.line(line.number + 1).text.trim().length === 0;
-	if (!isLastLine && !nextIsBlank) return false;
-
-	// Make sure the note isn't empty or made up of blank lines only.
-	let n = line.number - 1;
-	while (n >= 1 && doc.line(n).text.trim().length === 0) n--;
-	return n >= 1;
+	return isLastLine || nextIsBlank;
 }
 
 /** True when the inserted text is a plain line break (possibly with indent). */

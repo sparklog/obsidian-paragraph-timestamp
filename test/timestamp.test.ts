@@ -53,10 +53,18 @@ test("does not insert a timestamp on a soft line break", () => {
 	assert.equal(state.selection.main.head, 6);
 });
 
-test("does not insert a timestamp in an empty document", () => {
+test("inserts a timestamp in a brand-new empty document", () => {
 	let state = createState("");
 	state = pressEnter(state);
-	assert.equal(state.doc.toString(), "\n");
+	assert.equal(state.doc.toString(), "\n15:40 ");
+	assert.equal(state.selection.main.head, state.doc.length);
+});
+
+test("does not add a second timestamp on the next line of an empty document", () => {
+	let state = createState("");
+	state = pressEnter(state);
+	state = pressEnter(state);
+	assert.equal(state.doc.toString(), "\n15:40 \n");
 });
 
 test("does not insert a timestamp when the blank line is followed by text", () => {

@@ -33,6 +33,7 @@ So the plugin behaves like this:
 | --- | --- |
 | Type text, then press `Enter` once | Soft line break — **no** timestamp |
 | Press `Enter` again (creates a blank line) | New paragraph — **timestamp inserted** (`` `15:40` `` plus a space) |
+| Press `Enter` in a brand-new empty note | **Timestamp inserted** as well (`` `15:40` `` plus a space) |
 | Start typing at the beginning of a blank paragraph line | Same new paragraph; use the manual command to add a timestamp |
 
 > Note: In Obsidian's Reading view a single line break may *look* like a new paragraph (depending on the "Strict line breaks" setting), but the plugin judges by real Markdown semantics and only inserts a timestamp after a blank-line paragraph break.
@@ -153,8 +154,7 @@ npm run build    # type-check + production bundle, outputs main.js
   1. the cursor is at the start of a line;
   2. the current line is empty;
   3. the previous line is blank (a real Markdown paragraph break);
-  4. it is a safe position (end of note, or the following line is blank as well);
-  5. the document actually contains content earlier on.
+  4. it is a safe position (end of note, or the following line is blank as well).
 - The timestamp text is fetched from a provider at insertion time, so changing the settings takes effect **without reloading**.
 
 ---
