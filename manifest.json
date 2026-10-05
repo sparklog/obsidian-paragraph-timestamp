@@ -1,0 +1,10 @@
+{
+  "id": "paragraph-timestamp",
+  "name": "Paragraph Timestamp",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Automatically inserts a timestamp (e.g. 15:40) at the start of every new Markdown paragraph, while ignoring plain line breaks.",
+  "author": "tungliang",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
